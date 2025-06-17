@@ -1,12 +1,10 @@
-import pygame
 from abc import ABC, abstractmethod
-#ИСБ просто название несвязанное с проектом 
-# Настройки окна
+import pygame
+
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
 
-# Цвета
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -16,7 +14,7 @@ YELLOW = (255, 255, 0)
 PINK = (252, 15, 192)
 
 class Shape(ABC):
-    """Абстрактный класс формы."""
+
     def __init__(self, x, y, color=BLACK):
         self.x = x
         self.y = y
@@ -27,7 +25,6 @@ class Shape(ABC):
         pass
 
 class Circle(Shape):
-    """Круг"""
     def __init__(self, x, y, radius, color=BLACK):
         super().__init__(x, y, color)
         self.radius = radius
@@ -36,7 +33,6 @@ class Circle(Shape):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
 
 class Square(Shape):
-    """Квадрат"""
     def __init__(self, x, y, size, color=BLACK):
         super().__init__(x, y, color)
         self.size = size
@@ -49,7 +45,6 @@ class Square(Shape):
         pygame.draw.rect(screen, self.color, rect)
 
 class Line(Shape):
-    """Линия"""
     def __init__(self, start_pos=(0,0), end_pos=(0,0), width=1, color=BLACK):
         super().__init__(start_pos[0], start_pos[1], color)
         self.end_x = end_pos[0]
@@ -64,23 +59,13 @@ class Line(Shape):
                          self.width)
 
 def main():
-    # Инициализация Pygame
     pygame.init()
     screen = pygame.display.set_mode((WIDTH , HEIGHT))
     clock = pygame.time.Clock()
-
-    # Создаем фигуры по вашему описанию:
-
-    # Чёрный квадрат в левом верхнем углу
+    
     top_left_square = Square(50 + 35 , 50 + 35 ,70 , BLACK)
-
-    # Розовый квадрат в правом нижнем углу
     bottom_right_square = Square(WIDTH -50 -35 , HEIGHT -50 -35 ,70 , PINK)
-
-    # Синий круг справа сверху
     top_right_circle = Circle(WIDTH -50 -50 ,50 +50 ,50 , BLUE)
-
-    # Жёлтый круг слева снизу
     bottom_left_circle= Circle(50 +50 , HEIGHT -50 -50 ,50 , YELLOW)
 
     arrow_line1 = Line(
@@ -122,5 +107,5 @@ def main():
 
     pygame.quit()
 
-if __name__=="__main__":
+if __name__== "__main__":
     main()
